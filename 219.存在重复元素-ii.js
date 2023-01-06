@@ -11,7 +11,20 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function(nums, k) {
-
+  let hashMap = {}
+  for(let index in nums) {
+    let item = nums[index]
+    if(!hashMap[item]) {
+      hashMap[item] = index
+    } else {
+      if(Math.abs(+index - hashMap[item]) < k || Math.abs(index - hashMap[item]) === k) {
+        return true
+      } else {
+        hashMap[item] = index
+      }
+    }
+  }
+  return false
 };
 // @lc code=end
 
